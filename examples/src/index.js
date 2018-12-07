@@ -1,14 +1,5 @@
 import React from 'react';
-import { render} from 'react-dom';
-import { Select, Input } from '../../src';
-
-import './styles.scss'
-
-const App = () => (
-    <div className="App">
-        <Select />
-        <Input />
-    </div>
-);
+import { render } from 'react-dom';
+import App from './src/App'
 
 render(<App />, document.getElementById("root"));

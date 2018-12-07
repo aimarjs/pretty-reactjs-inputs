@@ -10,7 +10,7 @@ class Input extends Component {
     render() {
         return (
             <div className="message">
-                {this.state.message}
+                {this.props.label}
             </div>
         );
     }
