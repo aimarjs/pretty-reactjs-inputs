@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Icon from '../Icon/Icon'
 
 import './Select.scss'
-import { throws } from 'assert';
 
 class Select extends Component {
     state = {
