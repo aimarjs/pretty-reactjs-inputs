@@ -1,9 +1,12 @@
 import React from 'react';
 import { render} from 'react-dom';
-import MyComponent from '../../src';
+import { Select, Input } from '../../src';
 
 const App = () => (
-    <MyComponent />
+    <div>
+        <Select />
+        <Input />
+    </div>
 );
 
 render(<App />, document.getElementById("root"));

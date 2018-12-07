@@ -1,17 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import SelectComponent from './Select/Select'
+import InputComponent from './Input/Input'
 
-class index extends Component {
-    state = {
-      message: 'Hello!',
-    }
+export const Select = (props) => {
+  return <SelectComponent />
+};
 
-    render() {
-      return (
-        <div>
-          {this.state.message}
-        </div>
-      );
-    }
-}
+export const Input = (props) => {
+  return <InputComponent />
+};
 
-export default index;
