@@ -26,7 +26,6 @@ class Select extends Component {
 
     valueSelectHandler = (e) => {
         let currentState = {...this.state}
-
         if (e.target.id !== '') {
             currentState.selectedValue = e.target.id
             currentState.isOpen = false
@@ -40,7 +39,6 @@ class Select extends Component {
         if (this.node.contains(e.target)) {
             return
         }
-
         if (this.state.isOpen) {
             this.valueSelectHandler(e)
         }
