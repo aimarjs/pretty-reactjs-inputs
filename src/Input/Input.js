@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './Input.scss'
+
 class Input extends Component {
     state = {
         message: 'This is Input component'
@@ -7,7 +9,7 @@ class Input extends Component {
 
     render() {
         return (
-            <div>
+            <div className="message">
                 {this.state.message}
             </div>
         );
