@@ -1,19 +1,15 @@
-import React, { Component } from 'react';
+/* eslint-disable import/no-extraneous-dependencies */
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import './Input.scss'
+const Input = ({ label }) => (
+    <div className="message">
+        {label}
+    </div>
+);
 
-class Input extends Component {
-    state = {
-        message: 'This is Input component'
-    }
-
-    render() {
-        return (
-            <div className="message">
-                {this.props.label}
-            </div>
-        );
-    }
-}
+Input.propTypes = {
+    label: PropTypes.string,
+};
 
 export default Input;

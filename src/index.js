@@ -1,13 +1,10 @@
 import React from 'react';
 
-import SelectComponent from './Select/Select'
-import InputComponent from './Input/Input'
+import './scss/main.scss';
 
-export const Select = (props) => {
-  return <SelectComponent {...props} />
-};
+import SelectComponent from './Select/Select';
+import InputComponent from './Input/Input';
 
-export const Input = (props) => {
-  return <InputComponent {...props} />
-};
+export const Select = props => <SelectComponent {...props} />;
 
+export const Input = props => <InputComponent {...props} />;
