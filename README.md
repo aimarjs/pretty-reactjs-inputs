@@ -2,6 +2,8 @@
 
 Helping you to Stop using ugly html default inputs
 
-## Select
+## Props for Select
 
-required: options array
+options (array) required
+label (object) required
+style (object) optional

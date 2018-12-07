@@ -15,20 +15,29 @@ class Select extends Component {
         }))
     }
 
+    valueSelectHandler = (e) => {
+        let currentState = {...this.state}      
+        currentState.selectedValue = e.target.id
+        currentState.isOpen = false
+        this.setState(currentState)
+    }
+
     render() {
-        const { style, options } = this.props
-        const { isOpen } = this.state        
+        const { label, style, options } = this.props
+        const { isOpen, selectedValue } = this.state
+        console.log(this.state);
+        
         return (
             <div className="select-wrapper">
                 <div className='select-box' style={style} onClick={this.dropdownHandler}>
-                    <span>{this.props.label}</span>
+                    <span>{selectedValue === '' ? label : selectedValue}</span>
                     <Icon icon={!isOpen ? 'angle-down' : 'angle-up'} />
                 </div>
                 <div className={!isOpen ? 'select-dropdown' : 'select-dropdown open'}>
                     <ul>
                         {
                             options.map(opt => {
-                                return <li key={opt}>{opt}</li>
+                                return <li key={opt} id={opt} onClick={this.valueSelectHandler}>{opt}</li>
                             })
                         }
                     </ul>
