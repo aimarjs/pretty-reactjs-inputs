@@ -1,6 +1,23 @@
+const webpack = require('webpack')
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const Autoprefixer = require('autoprefixer')
+const devMode = process.env.NODE_ENV !== 'production'
+
+const miniCssExtractPlugin = new MiniCssExtractPlugin({
+    filename: path.join(__dirname, 'examples/dist/[name].css'),
+    // chunkFilename: "[id].css"
+})
+
+const autoprefixer = new webpack.LoaderOptionsPlugin({
+    options: {
+        postcss: [
+            Autoprefixer()
+        ]
+    }
+})
 
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
     template: path.join(__dirname, 'examples/src/index.html'),
@@ -10,7 +27,10 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
 const friendlyErrorsWebpackPlugin = new FriendlyErrorsWebpackPlugin()
 
 module.exports = {
-    entry: path.join(__dirname, "examples/src/index.js"),
+    entry: [
+        path.join(__dirname, "examples/src/index.js"),
+        path.join(__dirname, "src/main.scss"),
+    ],
     output: {
         path: path.join(__dirname, "examples/dist"),
         filename: "bundle.js"
@@ -23,14 +43,21 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.scss$/,
-                use: ["style-loader", "css-loader", "sass-loader"]
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    devMode ? "style-loader" : miniCssExtractPlugin.loader, 
+                    "css-loader", 
+                    "sass-loader", 
+                    "postcss-loader"
+                ]
             }
         ]
     },
     plugins: [
         htmlWebpackPlugin,
         friendlyErrorsWebpackPlugin,
+        miniCssExtractPlugin,
+        autoprefixer
     ],
     resolve: {
         extensions: [".js", ".jsx"]
