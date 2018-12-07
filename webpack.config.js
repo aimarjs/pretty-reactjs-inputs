@@ -1,9 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
     template: path.join(__dirname, 'examples/src/index.html'),
     filename: "./index.html"
 });
+
+const friendlyErrorsWebpackPlugin = new FriendlyErrorsWebpackPlugin()
+
 module.exports = {
     entry: path.join(__dirname, "examples/src/index.js"),
     output: {
@@ -23,11 +28,15 @@ module.exports = {
             }
         ]
     },
-    plugins: [htmlWebpackPlugin],
+    plugins: [
+        htmlWebpackPlugin,
+        friendlyErrorsWebpackPlugin,
+    ],
     resolve: {
         extensions: [".js", ".jsx"]
     },
     devServer: {
-        port: 3001
+        port: 3001,
+        quiet: true
     }
 };
