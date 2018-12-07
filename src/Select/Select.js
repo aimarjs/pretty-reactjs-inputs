@@ -2,11 +2,20 @@ import React, { Component } from 'react'
 import Icon from '../Icon/Icon'
 
 import './Select.scss'
+import { throws } from 'assert';
 
 class Select extends Component {
     state = {
         isOpen: false,
         selectedValue: ''
+    }
+
+    componentWillMount() {
+        document.addEventListener('mousedown', this.outsideClickHandler, false)
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.outsideClickHandler, false)
     }
 
     dropdownHandler = () => {
@@ -16,17 +25,31 @@ class Select extends Component {
     }
 
     valueSelectHandler = (e) => {
-        let currentState = {...this.state}      
-        currentState.selectedValue = e.target.id
-        currentState.isOpen = false
+        let currentState = {...this.state}
+
+        if (e.target.id !== '') {
+            currentState.selectedValue = e.target.id
+            currentState.isOpen = false
+        } else {
+            currentState.isOpen = false
+        }
         this.setState(currentState)
+    }
+
+    outsideClickHandler = (e) => {
+        if (this.node.contains(e.target)) {
+            return
+        }
+
+        if (this.state.isOpen) {
+            this.valueSelectHandler(e)
+        }
     }
 
     render() {
         const { label, style, options } = this.props
         const { isOpen, selectedValue } = this.state
-        console.log(this.state);
-        
+      
         return (
             <div className="select-wrapper">
                 <div className='select-box' style={style} onClick={this.dropdownHandler}>
@@ -34,7 +57,7 @@ class Select extends Component {
                     <Icon icon={!isOpen ? 'angle-down' : 'angle-up'} />
                 </div>
                 <div className={!isOpen ? 'select-dropdown' : 'select-dropdown open'}>
-                    <ul>
+                    <ul ref={node => this.node = node}>
                         {
                             options.map(opt => {
                                 return <li key={opt} id={opt} onClick={this.valueSelectHandler}>{opt}</li>
