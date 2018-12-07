@@ -48,13 +48,13 @@ class Select extends Component {
         const { isOpen, selectedValue } = this.state
       
         return (
-            <div className="select-wrapper">
+            <div className="select-wrapper" ref={node => this.node = node}>
                 <div className='select-box' style={style} onClick={this.dropdownHandler}>
                     <span>{selectedValue === '' ? label : selectedValue}</span>
                     <Icon icon={!isOpen ? 'angle-down' : 'angle-up'} />
                 </div>
-                <div className={!isOpen ? 'select-dropdown' : 'select-dropdown open'}>
-                    <ul ref={node => this.node = node}>
+                <div className={!isOpen ? 'select-dropdown' : 'select-dropdown open'} >
+                    <ul >
                         {
                             options.map(opt => {
                                 return <li key={opt} id={opt} onClick={this.valueSelectHandler}>{opt}</li>
