@@ -17,7 +17,7 @@ module.exports = {
         path: path.join(__dirname, 'examples/dist'),      
         filename: 'pretty-reactjs-inputs.js',      
         library: 'pretty-reactjs-inputs',      
-        libraryTarget: 'umd',      
+        libraryTarget: 'umd',
         publicPath: '/',      
         umdNamedDefine: true  
     },
@@ -48,7 +48,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'examples/src/index.html'),
-            // filename: "index.html"
+            filename: "index.html"
         }),
         new ExtractTextPlugin({
             filename: "pretty-reactjs-inputs.css",
@@ -65,9 +65,26 @@ module.exports = {
         })
         // new BundleAnalyzerPlugin()
     ],
-    resolve: {
-        extensions: [".js", ".jsx"]
-    },
+    // resolve: {      
+    //     alias: {          
+    //         'react': path.resolve(__dirname, './node_modules/react'),
+    //         'react-dom': path.resolve(__dirname, './node_modules/react-dom'),      
+    //     }  
+    // },  
+    // externals: {      
+    //     react: {          
+    //         commonjs: "react",          
+    //         commonjs2: "react",          
+    //         amd: "React",          
+    //         root: "React"      
+    //     },      
+    //     "react-dom": {          
+    //         commonjs: "react-dom",          
+    //         commonjs2: "react-dom",          
+    //         amd: "ReactDOM",          
+    //         root: "ReactDOM"      
+    //     }  
+    // },
     devServer: {
         port: 3001,
         quiet: false
